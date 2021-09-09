@@ -16,7 +16,6 @@ const highScores = [
   }
 ];
 
-
 const questionsLevelOne = [
   {
     question: `How many players can play from one team in a game ${chalk.magenta('Hint: number')} `,
@@ -75,6 +74,17 @@ function getRandomColor() {
         return chalk.hex(`${color}`);
     }
 
+function getRandomHexValue() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.round(Math.random() * 15)];
+        }
+        return `${color}`;
+}
+
+let randomGradient = gradient(getRandomHexValue(), getRandomHexValue(), getRandomHexValue(), getRandomHexValue(), getRandomHexValue(), getRandomHexValue(), getRandomHexValue(), getRandomHexValue());
+
 function welcome(userName){
   console.log(`
 
@@ -125,11 +135,12 @@ function printLevelClearedMessage(level) {
      
   console.log(getRandomColor().italic`
 
-  You have cleared level: ${getRandomColor().underline(level)}
+  ${randomGradient('Congrats!!!')} You have cleared level: ${getRandomColor().underline(level)}
   `)
   console.log(chalk.bgBlueBright(`
   ######################################`));
 }
+
 function isLevelCleared(game) {
   if(score === game.length) {
     return true;
