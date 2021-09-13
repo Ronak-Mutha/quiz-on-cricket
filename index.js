@@ -95,6 +95,25 @@ function welcome(userName){
 };
 
 
+function printQuizStartMessage() {
+  console.log(getRandomColor()`
+  Are you a true cricket fan and want to check how well do you know about cricket? Well then let's test your cricket knowledge.
+  `);
+}
+
+function printRules() {
+  console.log(getRandomColor()`
+{magentaBright.bold Rules}:
+    This quiz contains 2 levels: 
+    {red.underline Level One}: 
+          {bold Level One} will be easy one which will check your basic cricketing knowledge. 
+          Level One contains {cyan 3 questions}. Answer them all correctly to unlock {bold Level Two}.
+    {red.underline Level Two}:
+          {bold Level Two} will be the last level of this quiz. {bold Level Two} contians {cyan 5 questions}. Answer them all correctly and become the quiz champion and get your name printed on our leaderboard.
+
+    {red.underline Note}: Hints will be provided wherever numerical value is expected. For rest you will be typing answers in alphabets. Title / Lower / Upper / IdONtkNOWwhatcaSEIaMTyping casing is not important, ${chalk.italic("if you are having fun.")}. If not, then just stick to answering in lowercase.`);
+}
+
 function askQuestions(questions) {
   questions.forEach(
     ques => {
@@ -153,7 +172,7 @@ function printUserScore() {
     if(score < 4) {
       console.log(chalk.bold.red(`Your final score is: ${score}.`));
     } else {
-    console.log(chalk.bold.green(`YAY, Guess you know cricket well. You SCORED:  ${score}`));
+    console.log(chalk.bold.green(`YAY, Guess you're right. You really know cricket well. You SCORED:  ${score}`));
   }
 
 }
@@ -188,11 +207,13 @@ function toTitleCase(string) {
 
 
 function play(game) {
+  printQuizStartMessage();
+
   var userName = readlineSync.question(chalk.italic.cyan('What\'s your name? '));
   var userNameTitleCase = toTitleCase(userName);
   
   welcome(userNameTitleCase);
-  
+  printRules();
   for(let i=0; i < game.length; i++ ) {
     levelStartMessage(game[i].level);
     askQuestions(game[i].question);
