@@ -96,9 +96,9 @@ function printQuizStartMessage() {
   `);
 }
 
-function printRules() {
+function printInstructions() {
   console.log(getRandomColor()`
-{magentaBright.bold Rules}:
+{magentaBright.bold Instructions}:
     This quiz contains 2 levels: 
     {red.underline Level One}: 
           {bold Level One} will be easy one which will check your basic cricketing knowledge. 
@@ -208,7 +208,7 @@ function play(game) {
   var userNameTitleCase = toTitleCase(userName);
   
   welcome(userNameTitleCase);
-  printRules();
+  printInstructions();
   for(let i=0; i < game.length; i++ ) {
     levelStartMessage(game[i].level);
     askQuestions(game[i].question);
